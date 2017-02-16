@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var ForkCheckerPlugin = require('awesome-typescript-loader');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
 
 var config = {
@@ -40,7 +41,10 @@ module.exports = {
         },
         {
             test: /\.scss$/,
-            use: ['style-loader', 'css-loader?modules&camelCase', 'sass-loader']
+            use: ExtractTextPlugin.extract({
+                fallback: "style-loader",
+                use: ['css-loader?modules&camelCase', 'sass-loader']
+            })
         }
         ]
     },
@@ -51,8 +55,10 @@ module.exports = {
         }),
         new (webpack.optimize.OccurenceOrderPlugin || webpack.optimize.OccurrenceOrderPlugin)(),
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-            __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
         }),
+        new ExtractTextPlugin("styles.css")
     ]
 };
