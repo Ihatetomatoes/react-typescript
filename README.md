@@ -17,6 +17,6 @@ Simple React starter configuration using TypeScript for type checking.
 3. Run `npm run dev`
 4. Your site is now avaiable at `http://localhost:8080/`
 
-## Notes
+## Build prod files
+1. Run `npm run prod` - new files will be generated in `dist` folder
 
-Please note this is only a starter kit and does not include production settings. Useful for development mode only, and was created purely to quickly start learning React.
