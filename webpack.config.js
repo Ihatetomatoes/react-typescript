@@ -10,11 +10,6 @@ var config = {
 
 var dev = process.env.NODE_ENV !== 'production';
 
-if (dev) {
-    //config.app.unshift('webpack/hot/dev-server');
-    //config.tsxLoaders.unshift('react-hot-loader');
-}
-
 module.exports = {
     entry: {
         app: config.app
@@ -51,7 +46,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Hello World!',
+            title: 'React with TypeScript Starter Kit',
             template: './src/index.ejs'
         }),
         new (webpack.optimize.OccurenceOrderPlugin || webpack.optimize.OccurrenceOrderPlugin)(),
