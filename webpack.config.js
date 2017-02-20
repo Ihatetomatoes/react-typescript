@@ -6,6 +6,7 @@ const path = require('path');
 
 var config = {
     app: ['./src/index.tsx'],
+    contact: ['./src/contact.tsx'],
     tsxLoaders: ['babel-loader','awesome-typescript-loader']
 }
 
@@ -16,11 +17,12 @@ module.exports = (env) => {
 
     return {
         entry: {
-            app: config.app
+            app: config.app,
+            contact: config.contact
         },
         output: {
             path: path.resolve(__dirname, 'dist'),
-            filename: 'bundle-[hash].js',
+            filename: '[name]-bundle-[hash].js',
             publicPath: '/'
         },
         resolve: {
@@ -63,6 +65,12 @@ module.exports = (env) => {
             new HtmlWebpackPlugin({
                 title: 'React with TypeScript Starter Kit',
                 template: './src/index.ejs'
+            }),
+            new HtmlWebpackPlugin({
+                title: 'Contact Form',
+                filename: 'contact.html',
+                template: './src/contact.ejs',
+                chunks: ['contact']
             }),
             new (webpack.optimize.OccurenceOrderPlugin || webpack.optimize.OccurrenceOrderPlugin)(),
             new ExtractTextPlugin("styles.css")
