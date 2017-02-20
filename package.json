@@ -4,9 +4,9 @@
   "description": "Starter kit to build React app with Typescript and Mobx.",
   "main": "src/index.ts",
   "scripts": {
-    "prod": "npm run clean && webpack -p",
+    "prod": "npm run clean && webpack -p --env.production --progress",
     "clean": "rimraf dist/*",
-    "dev": "node_modules/.bin/webpack-dev-server --progress --inline"
+    "dev": "node_modules/.bin/webpack-dev-server -d --env.development --progress"
   },
   "author": "Petr Tichy",
   "license": "MIT",
